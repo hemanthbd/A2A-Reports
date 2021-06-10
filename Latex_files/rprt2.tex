@@ -1,0 +1,382 @@
+\documentclass[11pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[spaces,hyphens]{url}
+
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Aerial Photogrammetry }
+
+\author{Hemanth Balaji Dandi\\
+{\tt\small hemanthdandi.aero2astro@gmail.com}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+% \and 
+% Sathya Sri Chikoti\\
+% {\tt\small schikoti@asu.edu}
+%Second Author\\
+%Institution2\\
+%First line of institution2 address\\
+%{\tt\small secondauthor@i2.org}
+}
+
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+In the report, I will be going through Aerial Photogrammetry in detail along with the common terminologies used. In addition, various issues relating to how data is collected and how these affect the final maps/mosaics will be demonstrated. Last part of this report will be a couple of examples taken from Pix4D illustrating 3D Textured Mesh, Orthomosaic mapping, etc.
+
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Definition}
+
+Aerial Photgrammetry involves processing of orthoimages taken from a nadir/Oblique(or both) field-of-view(FOV) camera placed in the bottom of a UAV/Drone. These collections/batch of orthoimages are then converted to maps, 3-D meshes, orthomosaics, contour lines,etc using calibrated stitching.
+\\ The level of detail/resolution can be further improved by adjusting the individual orthoimages for various environmental conditions, time factors, geometric distortions, etc. 
+\\ Finally the stitched map can be used for multiple advanced analysis such as changes in weather,vegetation patterns, viewing building structures andsteep areas remotely which saves time, manpower and keeps track of progress. 
+
+
+
+\section{Terminologies}
+\subsection{Orthomosaic Map}
+
+It is a stitched 2D/3D map of orthoimages( with the help from their overlapping regions) which is extremely useful (depending upon the quality of the orthoimages, quality of orthorectification) to observe changes in the areas viewed upon, with great-detail. 
+
+\subsection{Metadata}
+
+Metadata comprises of important data pertaining to the conditions surrounding when the orthoimages are captured which helps to provide accurate and calibrated maps during the creation of the mosaic.
+\\ It is very important to keep track of this information for further analysis and future maps as well.
+
+\\ Metadata may include:
+\begin{itemize}
+    \item GPS coordinates during each capture
+    \item Plane altitude
+    \item Date and time of the capture
+    \item Camera settings like focal length, resolution, shutter speed, etc.
+    \item Weather conditions for precise mapping
+\end{itemize}
+
+
+
+\subsection{3D Mapping}
+3D mapping is a 2D representation of an orthomosaic map with the same spatial and consistent characteristics of a 3D model.
+
+\subsection{3D Modelling}
+A Z dimension, which signifies height/depth,is added as an additional detail during mosaicing to form a 3D model, thereby providing a richer perspective to the individual features of the topography and buildings.
+
+
+\subsection{Resolution}
+\subsubsection{Spatial Resolution}
+
+Spatial resolution is the quantity of data per pixel. Greater the spatial resolution, more finer will be the image/map. 
+
+
+\subsubsection{Temporal Resolution}
+
+Temporal resolution is the rate of change between within images/maps. Better the temporal resolution, richer and precise will be the inference across time.
+
+\subsubsection{Spectral Resolution}
+
+Spectral resolution is the amount of the data collected by the sensor relating to EM waves. Better spectral resolution refers to greater ability to record minute changes in EM waves like NIR. 
+
+\subsection{Structure From Motion (SfM)}
+
+Structure from Motion, as the name suggests, provides a 3D representation reconstructed from combining/mosaicing carefully calibrated 2D images,like an object or a scene.
+\\ Greater the resolution of the 2D images better and dense will be the 3D models be it a point-cloud or a textured mesh
+
+
+\subsection{Field of View (FOV)}
+\subsubsection{Nadir}
+Nadir represents a perpendicular FOV towards the respective surface/objects, thus being ideal for aerial photogrammetry.
+
+\subsubsection{Oblique}
+Oblique represents a not-nadir (perpendicular FOV) angular FOV, usually between 40 to 50 degrees w.r.t the ground. It's used to capture steep images. 
+\\ It's however not good for photogammetry as the scale would be inconsistent with the image being captured.
+
+\subsection{Overlap}
+ 
+ Overlap is defined as the percentage of intersection area between two photographs. 
+
+
+\subsection{Focal length}
+
+Focal length is defined as the optical distance between the camera sensor/film to the center of the lens. It captures the angular view of the lens.  Greater the focal length, more accurate will be the image because of a narrower angular view capture. It's an important intrinsic parameter of the camera during calibration.
+
+\subsection{Scale}
+It is the ratio between the camera's focal length and the plane's altitude above the ground being photographed.
+Scale is defined as the ratio of the distance between any two points in the image to the actual distance between the same two points on the ground.
+
+\begin{itemize}
+    \item Large Scale 
+    \\ Larger-scale images cover smaller areas but with much greater detail.
+    \item Small Scale
+    \\ Small-scale images cover larger areas but with much lesser detail
+
+\end{itemize}
+
+\subsection{Camera Sensitivty}
+Camera sensitivity is defined as the amount of light required to capture a signal minus the noise floor. 
+This means that greater the sensitivity, less light will be required to capture the same signal when compared to when the sensitvity is lower.
+\\ Sensitivity is also inversely proportional to the amount of exposure time of the camera. Hence, greater sensitivity corresponds to quicker shutter speed.
+\\ In Aerial Survey and Mapping, motion blur of the camera impacts the flight speed of the UAV. Since it correlates with it's shutter speed, more the sensitivity, faster speed can the UAV clock as it's able to utilize the shorter exposure times of the camera.
+
+
+\subsection{Noise}
+Noise is defined as the effective summation of all noise sources occurring within the system. 
+\\There are mainly 3 types-
+\subsubsection{Read Noise}
+\begin{itemize}
+    \item Occurs every time during image capture
+    \item  This is generated either from the sensor design or camera electronics
+    \item Does not depend upon temperature or level of the signal of the sensor
+\end{itemize}
+\subsubsection{Dark Current Noise}
+\begin{itemize}
+    \item It is the change in the amount of dark electrons collected during the exposure.
+    \item  This is generated either from the sensor design or camera electronics
+    \item It depends upon both time and thermal temperature as it's caused due to a thermal phenomenon but is independent of signal level.
+    \item Hence, greater the exposure time and hotter the sensor, more of this noise will be produced.
+\end{itemize}
+\subsubsection{Photon Shot Noise}
+\begin{itemize}
+    \item  Arrival of photons at the pixel is accompanied by a statistical noise called photon shot.
+    \item  It is dependent upon the signal level but independent of sensor temperature
+\end{itemize}
+ \\ Noise is heavily coupled with the Gain of the camera. Hence lower noise facilitates a greater gain without damaging the image features.
+ \\ This in-turn reduces exposure times further, which leads to a greater flight speed of the UAV.
+
+
+\subsection{Dynamic Range}
+Dynamic Range is defined as the range of brightness gradients that are captured in-detail by the camera within an image. Better the dynamic range, more detailed features can be captured by the camera in darker regions/very bright regions. 
+\\ Tone-Mapping is used to improve/flatten out the curve of dynamic range in HDR Raw images.
+
+\subsection{Bit Depth}
+Bit depth represents the exact measurement of every pixel, which provides the various shades available in each pixel, which is two to the power of bit depth, as it's binary. Increasing the bit depth hence exponentially increase the amount of shades of color that can be contained in a single pixel, thus exponentially increasing it's storage capacity.
+\\ Image usually are of 8 bits/channel. 
+
+
+\subsection{Bundle Adjustment}
+It is the minimization of sum of errors between the 2D points of the observation and the 2D points which are predicted from the re-projection of the 3D image through the parameters of the camera. In other words, it a form of geometric triangulation to obtain the 3D object location by projecting the set of images in space. Through this, one can estimate the shape and position of each object through a set of rays drawn relative to the camera's optical origin.
+\\ It thus measures how accurate the 3D orientation structure and camera parameters are.
+
+
+\subsection{Ground Sampling Distance}
+
+Ground sampling distance (GSD) is defined as the distance between the centers of consecutive pixels on the ground. Greater the value of GSD, the lower the spatial resolution of the image will be hence will contain less finer details.
+\\The GSD is calculated based on:
+\begin{itemize}
+    \item The UAV altitude (H)
+    \item Camera parameters- Image width (iW), Sensor width (sW), Focal length. (f)
+\end{itemize}
+
+GSD (resolution/pixel) = (H x sW) / (f x iW) (in cm)
+
+
+\subsection{Mean Reprojection Error}
+Mean reprojection error is defined as the euclidean distance between the 3D reprojected point to 2D and the original 2D point in the image. It helps determine the accuracy of estimating the 3D model, camera calibration parameters, which in-turn influences how bundle adjustment equations work. 
+
+
+\subsection{Camera Distortion}
+It is divided into two types- Optical Distortion and Perspective Distortion
+\\Optical Distortion is where it bends physically straight lines and makes them appear curvy in the image. It is caused due to lens error.
+\\ Perspective Distortion is where when projecting a 3D space into a 2D image,closer the object is to the camera, greater will it appear distorted and bigger than it actually is compared to its background.Also the case of parallel train tracks appearing to converge at infinity.
+
+
+
+\section{Extra Concepts}
+\subsection{Orthomosiac Map}
+
+\subsubsection{Challenges/Poor Data}
+There are couple of challenges that might arise during creation of Orthomosaic maps-
+
+\begin{itemize}
+    \item \textbf{ Inadequate amount of Overlap }
+    \\ This affects the internal algorithm of stitching as for many images, due to little or very less overlap, reference points cannot be extracted which would be common between similar features of the image, thereby leading to a poor, filled with spaces, and imprecise result. 
+    \item \textbf{Poor details}
+    \\ Low grade camera quality, blurry focus, inadequate weather and lighting conditions can lead to poorly defined orthoimages. 
+    \item \textbf{ Filler unwanted images}
+    \\Sometimes during drone capture, images are taken which aren't important like during takeoff/unwanted areas, and these could affect finding reference points by the algorithm sometimes.
+\end{itemize}
+
+\subsubsection{Methodology \emph{(also includes situations of poor data)}}
+\begin{itemize}
+    \item \textbf{Altitude and speed}:
+        \\ Altitudes and speeds can affect each other. For a much more detail-oriented map, lower altitude flights are required but at the same time, should have an optimal speed as higher speeds can result in blurry images which will prove finding feature points as well as overlapping reference points difficult during stitching.
+        \\ For different structures on the terrain, different altitudes are required, but must always be above the region of interest.
+        \\ The Field of View of the camera will be discussed in the below sections.
+
+    \item \textbf{Overlap Percentage}
+        \\ Greater the overlap percentage, more will the feature points be detected, hence more reference points will be available during stitching, thus will in-turn lead to a better and detailed map.
+        \\ Ideal image overlap percentage is atleast 70\% depending upon the task and regions. If more details are needed, it would make more sense to have a greater percentage, however, if not, even 60\% will be enough. It all depends upon the mapping region and task.
+        \\ Greater overlap can lead to a large number of images, which could affect processing times, so it should be taken into consideration while deciding the limit.
+
+        
+    \item \textbf{Required Field of View (FoV) / Angles}
+        \\ It is desirable if the orthophotos are taken at nadir rather than on oblique as during the later,because of a slightly different angle from the perpendicular, distortions will be caused when stitching the oblique image with a nadir image because of different scales, therby reducing the precision of the orthomosaic map.
+        \\ Oblique images are sometimes unintentionally captured during UAV turns, and if not kept track off, will lead to imprecise maps. 
+        \\ However, Oblique images are very useful in capturing a much more detailed mesh of the object,like in a 3D textured mesh so they are very useful if they are taken separate to the nadir images, and not in-place as distortions occur.
+
+        
+    \item  \textbf{Lighting and camera configuration}
+        \\ Camera and lighting settings like exposure,shutter speed, brightness,contrast, etc play a vital role in capturing the most optimal image detail, so they need to adjusted.
+        \\ Depending upon the time of day, season, weather condition,etc, the above parameters need to be adjusted to give the best output. 
+        \\ For example long shadows due to the position of the sun,creates distortion within the image, which might prove feature extraction quite difficult.
+        \\ It is usually recommended for the weather to be a bit cloudy to prevent the above situation.
+        \\ Hence always these configurations need to be checked and weather conditions should be accounted for while setting the drone camera and lighting parameters.
+      
+
+\end{itemize}
+
+\subsection{Oblique vs Nadir vs Both}
+
+\begin{itemize}
+    \item Steep topography often contains low-density regions or voids in nadir photogrammetry, 
+    Nadir photogrammetry performs poorly while mapping out steep surfaces and topography leading to less-detail capture.
+    \item Oblique photogrammetry,on the other hand, works very well in mapping less than vertical surfaces but as we know, performs poorly in capturing diverse regions spanning a huge area, as well as interferes with the stitching algorithm.
+    \item Since both FOV images have their pros and cons, they can both be mapped into a improved detailed and comprehensive Map by either being processed simultaneously or combined after processing. 
+    \item Most photogrammetry software applications like Pix4Dmapper, Agisoft Metashape, allow for both both of them to be processed together.
+    \item However, there exists a situation where, due to not enough overlap between pairs of images, there could be a huge vertical offset between the two. 
+    \item To overcome this problem,in one paper, nadir and oblique imagery were processed separately and then merged into a single project using manual tie points, which were assigned to each of the brightly
+    colored photogrammetric targets visible in the respective image sets.
+    \item They forced the photogrammetry software to recognize these tie points as common features so that oblique and nadir images captured from multiple flights could be merged into complete 3D models that fully captured the diverse topography at each area.
+    
+\end{itemize}
+
+\section{Problems with Data \emph{(mentioned in the previous sections)} }
+
+\section{Sample Datasets}
+\subsection{Pix4D}
+\subsubsection{Pix4Dmapper Building}
+\begin{table}[H]
+\begin{adjustbox}{max width=230pt,max height=200cm}
+ \begin{tabular}{||c | c||} 
+ \hline
+ Input & Characteristic  \\ [0.5ex] 
+ \hline\hline
+ Location & Germany \\ 
+ \hline
+ Average Ground Sampling Distance (GSD) & 1.89 cm / 0.7 in  \\
+ \hline
+ UAV & AscTec Falcon 8 UAV (Ascending Technologies)  \\
+ \hline
+ Image acquisition plan & 1 flight, circular flight around the building \\
+ \hline
+ Camera & Sony NEX-5 (RGB)  \\ 
+ \hline
+ Number of images & 36  \\
+ \hline
+ Image size	 & 4592x3056 \\
+ \hline
+ Image geolocation coordinate system & WGS84 \\ [1ex] 
+ \hline
+
+\end{tabular}
+\end{adjustbox}
+  \caption{Building Project Information}
+\end{table}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=0.9\linewidth]{latex/orthomosaic_building_pix4d.jpeg}
+\caption{Screenshot of Orthomosaic Mapping of a Building in Pix4D }
+\label{fig:1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=0.9\linewidth]{latex/3d_mapping_building_pix4d.jpeg}
+\caption{Screenshot of 3D Mapping of the Building in Pix4D }
+\label{fig:2}
+\end{figure}
+
+
+
+
+
+\subsubsection{UAV Demo Dataset}
+
+This is from a demo project in Pix4D.
+
+\begin{figure}[!htbp]
+\centering
+    \includegraphics[width=0.9\linewidth]{latex/uav_demo_image_map.jpeg}
+\caption{Screenshot of Image Mapping from a UAV }
+\label{fig:3}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+    \includegraphics[width=0.9\linewidth]{latex/uav_demo_point_cloud.jpeg}
+\caption{Screenshot of the Point Cloud from the UAV }
+\label{fig:4}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+    \includegraphics[width=0.9\linewidth]{latex/uav_demo_3d_textured_mesh.jpeg}
+\caption{Screenshot of the 3D Textured Mesh from the UAV }
+\label{fig:5}
+\end{figure}
+
+
+\subsection{Drone Deploy}
+
+\subsubsection{Data Requirements}
+\begin{itemize}
+    \item Images need to be in jpeg format
+    \item All images GPS EXIF data must have latitude, longitude, and altitude
+    \item All images should be towrds ROI
+    \item All images should have significant overlap (more than 70\% side and front overlap, 80\% for agricultural or homogeneous imagery)
+    \item At least 30 images for reliable map processing.
+\end{itemize}
+
+\subsection{References}
+\begin{itemize}
+    \item \url{https://www.nrcan.gc.ca/maps-tools-publications/satellite-imagery-air-photos/air-photos/national-air-photo-library/about-aerial-photography/concepts-aerial-photography/9687}
+    \item \url{https://www.mapware.ai/an-introduction-to-drone-photogrammetry}
+    \item \url{https://www.mapware.ai/blog/producing-high-quality-orthomosaic-maps}
+    \item \url{https://digitalcommons.mtech.edu/cgi/viewcontent.cgi?article=1243&context=grad_rsch}
+    \item \url{http://gsp.humboldt.edu/OLM/Courses/GSP_216_Online/lesson8-2/SfM.html}
+    \item \url{https://www.lumenera.com/media/wysiwyg/documents/casestudies/Aerial_Imaging_WP_Most_Important_Camera_Parameters_for_Aerial_Imaging.pdf}
+
+\end{itemize}
+
+
+
+
+\end{document}
+
+
