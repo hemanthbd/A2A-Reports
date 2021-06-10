@@ -1,0 +1,465 @@
+\documentclass[11pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage[spaces,hyphens]{url}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+%\ifcvprfinal\pagestyle{empty}\fi
+\setcounter{page}{1}
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{UAVs, Applications of Photogrammetry and Aerial Survey and Mapping in Drones}
+
+\author{Hemanth Balaji Dandi\\
+{\tt\small hemanthdandi.aero2astro@gmail.com}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+% \and 
+% Sathya Sri Chikoti\\
+% {\tt\small schikoti@asu.edu}
+%Second Author\\
+%Institution2\\
+%First line of institution2 address\\
+%{\tt\small secondauthor@i2.org}
+}
+
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+In the report, I will be highlighting few relevant information on UAVs in general, Photogammetry and it's application, Remote Sensing ,Aerial Survey and Mapping and lastly, Software/tools for Aerial Survey and Mapping/Photogammetry.
+
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{UAV}
+\subsection{Introduction}
+
+
+Unmanned Aerial Vehicles (UAVs) / Drones are autonomous/remote controlled aircrafts that don't have a human pilot driving them. 
+
+\subsection{Types}
+There are various types of UAVS, depending upon their functional use, aerodynamics,landing, weight and their altitude/range.
+\subsubsection{Based on Function}
+\begin{itemize}
+\item Combat - For highly risky missions, UAVs can be used for attack purposes.
+\item Reconnaissance – Provides surveillance in areas difficult to reach/get information/intelligence from. 
+\item Target and decoy – Helps to mimic enemy aircraft during training
+\item Logistics – Provides assistance in carrying goods like maybe food for calamity stricken countries or just simply used for transport of small objects during emergency situations.
+\item Civil and commercial UAVs – Used to support agriculture, urban land survey and map,unknown terrain map, etc.
+\item Research and development – Improving existing technologies in UAVs for better data capture, reducing distortions, improving details in mappings and reducing time.
+\end{itemize}
+
+\subsubsection{Based on Aerodynamics}
+\begin{itemize}
+\item Fixed-wing aircraft 
+\begin{itemize}
+    \item The drones are simple but limited in designing and manufacturing.
+    \item The primary lift-generation is provided by the fixed wings
+    \item Requires higher initial speed and thrust to load ratio $<$ 1 to being flight
+    \item Cannot hover in the same position and cannot maintain lower speeds.
+    \item Unstable during win conditions
+\end{itemize}
+\item Flapping Wing
+\begin{itemize}
+    \item Inspired from insects
+    \item Very light-weighted wings inspired from birds feathers
+    \item Stable during wind conditions.
+    \item Easily mobile 
+\end{itemize}
+\item Ducted Fans
+\begin{itemize}
+    \item Drones where their ‘thrusters’ are enclosed within a duct.
+    \item Can take oﬀ and land vertically as weel as hover and be controlled by two counter rotors and four control surfaces (vanes)
+\end{itemize}
+
+\item Fixed/flapping-wing
+\begin{itemize}
+    \item Combining both fixed and flapping where lift generation is from fixed and propulsion is from the flapping wings.
+    \item Increases efficient and balance.
+\end{itemize}
+\item Multirotor
+\begin{itemize}
+    \item Lifting and propelling comes from the thrust of the main blade.
+    \item They can do VTOL and hover at a position
+    \item Hovering and speed abilities makes them ideal for surveillance purpose and monitoring.
+    \item Need more power
+
+\end{itemize}
+
+\end{itemize}
+
+\subsubsection{Based on Landing}
+\begin{itemize}
+\item Horizontal takeoff and landing (HTOL):
+ They have high cruise speed and smooth landing
+\item Vertical takeoff and Landing (VTOL)
+They are great in vertical flying, landing and hovering, but not with cruise
+speed because of the the decline of retreating propellers.
+\end{itemize}
+
+\subsubsection{Based on Weight}
+\begin{itemize}
+\item Micro air vehicle (MAV) – Weigh less than 1g
+\item Miniature UAV – Weight approx. less than 25 kg
+\item Heavier UAVs. $>$ 500 kg
+\end{itemize}
+
+
+\subsection{Advantages}
+\subsubsection{Single-Rotor}
+\begin{itemize}
+\item It's a VTOL flight
+\item it's a Hover flight
+\item It has a Heavy Payload
+\item It has a long endurance and large coverage
+\end{itemize}
+
+\subsubsection{Multi-Rotor}
+\begin{itemize}
+\item It's a VTOL flight
+\item It's a Hover flight
+\item It has great Mobility
+\item Can be used Indoors/Outdoors
+\item Can be used in Small and cluttered areas
+\item It has a simple design
+\end{itemize}
+
+\subsubsection{Fixed-Wing}
+\begin{itemize}
+\item It has a long endurance and large coverage
+\item It's flight speed is quick
+\item It has a Heavy Payload
+\end{itemize}
+
+\subsubsection{Hybrid}
+\begin{itemize}
+\item It has a long endurance and large coverage as well
+\item It's a VTOL flight 
+\end{itemize}
+
+\subsection{Disadvantages}
+\subsubsection{Single-Rotor}
+\begin{itemize}
+\item Area coverage is small
+\item It is more dangerous
+\end{itemize}
+
+\subsubsection{Multi-Rotor}
+\begin{itemize}
+\item Area coverage is small as well
+\item It has Limited payload
+\item It has shorter flight time
+\end{itemize}
+
+\subsubsection{Fixed-Wing}
+\begin{itemize}
+\item It needs a specific area for Launch-Landing
+\item It has no hover flight
+\item It requires forward velocity constantly to fly
+\end{itemize}
+
+\subsubsection{Hybrid}
+\begin{itemize}
+\item It is still under development
+\item  It is a transition b/w hovering and forward flight
+\end{itemize}
+
+
+\subsection{Limitations/Challenges}
+\begin{itemize}
+\item Technology Challenges
+There is a great concern for payload endurance.
+\item Safety and security/Liability
+Accidents, injuries and interference with public and private freedom.
+\item Privacy
+Flying on private property
+\item Airspace interference
+Interfering with usual commercial airspace and breaching restricted regions
+\end{itemize}
+
+\subsection{Recent Advances}
+\subsubsection{Agriculture}
+\begin{itemize}
+    \item Helps in Precision Farming
+    \item Helps control pesticide spraying and fertilisers.
+    \item Aerial mapping and monitor of  vegetation is built upon the spatial,temporal and spectral resolution of sensors onboard such as MODIS, OLI, and AVHRR
+    \item UA drone used Microdrone MD4-200 with a team ADC lite digital CMOS camera with image resolution
+    of 1200x1024 pixels to estimate nitrogen and aboveground biomass of soybeans, alfalfa and corn
+    crops.
+    \item A drone along with multispectral and thermal sensors to describe the spatial variability of
+    water within a commercial rain-sustained vineyard.
+
+\end{itemize}
+\subsubsection{Forestry, fisheries and wildlife protection}
+\begin{itemize}
+    \item A remotely controlled fixed wing UAV with thermal and hyperspectral sensors helped towards forest fire detection and monitoring
+    \item UAV equipped with thermal sensors along with satellite are being approached for
+monitoring, tagging and counting of animals which help to wildlife conservation and curb poaching.
+\end{itemize}
+\subsubsection{Defence}
+UAVs started off and still are used widely for war missions like intelligence, spying, reconnaissance vigilance and target detection.
+
+\subsubsection{Civil Applications }
+\begin{itemize}
+    \item Drones are being sought upon from electricity companies to the railway industry. 
+    \item Electrical companies are preferring drones for inspection of high tension lines with ease of risky task of climbs and power outages
+    \item The Indian government is
+    planning 3d mapping of thousands of kilometres long railway corridors and national highways.
+    \item They are helpful during search and
+    rescue operations of missing people during disasters.
+\end{itemize}
+
+
+\section{GIS/Photogrammetry}
+\subsection{Introduction}
+Photogrammetry is used to extract a model of a real-world object/scene by the principle of triangulation, which provides the 3-D real-world location/coordinates of the objects through the intersection of minimum two LOS (line-of-sight) rays, each originating from different perspective positions of the camera to the object points. 
+
+\subsection{Usage/Application}
+\subsubsection{Camera Location based Classification}
+\begin{itemize}
+\item Aerial Photogrammetry:
+Aircraft is mounted with a camera on it's bottom, pointing vertically down towards the surface with a vertical or nearly vertical camera axis
+\item Terrestial Photogrammetry:
+
+The Photographs are taken from a fixed position on or near the
+ground and with a horizontal or nearly horizontal camera axis.
+\item Space Photogrammetry:
+Extraterrestrial photography with the camera may be on the earth, artificial satellite, or another planet.
+\end{itemize}
+
+\subsubsection{Type-based Classification}
+\begin{itemize}
+\item Interpretative Photogrammetry:
+This type of photogrammetry involves analysing and identifying objects through accurate interpretation of aerial photographs. It's also known now as remote sensing, and by remote aerial structures like satellites.
+
+\item Metric Photogrammetry:
+This helps to determine areas,volumes,distances,etc from precise measurements of photographs, thus being able to form maps as well. It's used by both aerial and terrestrial camera positions.   
+\end{itemize}
+
+\subsubsection{Type-based Classification of Aerial Photographs}
+\begin{itemize}
+\item Vertical Photograph:
+When the optical axis of the camera is vertical or nearly vertical, the photograph taken is called a vertical photograph. Tilt must be less than 3 degrees
+
+
+\item Tilted Photograph:
+If the axis is tilted from the vertical, the photograph becomes a tilted photograph. Tilt is greater than 3 degrees
+
+\begin{itemize}
+\item High Oblique photograph: When the Apparent Horizon appears
+\item  Low oblique Photograph: If the Apparent Horizon does not appear
+
+\end{itemize}
+
+\item Angular Filed of View (FOV) Classification:
+\begin{itemize}
+    \item Normal Angle Photograph: FOV is between 50 to 75 degrees
+    \item Wide Angle Photograph: FOV is between 75 to 100 degrees
+    \item Super/Ultra wide angle Photograph: FOV is between 100 to 150 degrees
+\end{itemize}
+
+
+
+\end{itemize}
+
+\subsubsection{Lapping in Vertical Photography}
+\begin{itemize}
+    \item During vertical photography, the flight strip process is such that there is an overlap/duplication between successive photographs
+    \item Stereoscopic overlap (End lap) is the overlapping area between successive adjacent pairs of photographs in the flight strip. It is usually 55\% to 65\%
+    \item Side laps are from adjacent flight strips and are normally 25\% to 30\%
+    \tem Block of photographs are two or more side-lap strips.
+\end{itemize}
+
+
+\section{Remote Sensing}
+
+Remote sensing is a state-of-the-art inspection technique that helps to map vital structural, environmental, terrain features using an aerial object like a UAV. It can be combined with Photogammetry and some automation to provide and monitor spatio-temporal changes over the area by converting raw data into 3D mappings.
+It is extremely useful as it helps to also decrease in-person work while at the same-time provide valuable information about dangerous and narrow terrains.
+
+\section{Drone/Aerial Survey & Mapping}
+\subsection{Algorithm}
+\begin{itemize}
+    \item Data Capture:
+    A camera is mounted to the bottom of the drone and is pointing vertically down towards the surface. A large number of overlapping images are hence captured by the drone along the path
+    \item Photogrammetry:
+    A high resolution 3-D model/map is extracted through photogrammetry by projecting onto a orthophoto and all of them are mosaiced (Orthomosaic) after refinement of distortions by the photographs extracted by the drone
+    The photographs extracted by the data capture are processed through stitching, preferably an automated method after which a high quality map is formed.
+\end{itemize}
+
+\subsection{Industry Applications and Usage}
+They are used in many applications
+\begin{itemize}
+\item Police and Fire Departments:
+\begin{itemize}
+\item Mapping highly frequented locations in cities, such as malls and schools:
+\item  Documenting crime scenes:
+\item  Mapping after disasters:
+\end{itemize}
+\item  Real Estate:
+Drone mapping, being of a higher quality than satellite images because of the lower altitude, can capture finer details of the estate for the interested costumer to view remotely. This solves the commutation problems of ever-busy prospective clients, therby saving time.
+\item  Construction:
+Maps can be used to generate 3-D models of the construction area. It can also be used to keep-track of progress of the project remotely with detailed picture of the raw-materials being used, hence, in real-time remotely, suggest changes/improvement.
+\item Conservation
+Drone mappings help to keep track of the increasing levels of poaching. It also helps keep track of withered away trees, forest fires, etc.
+\item Agriculture
+This field has one of the most bigger chances of making an impact as it helps farmers keep track of irrigation details, and figure out poor regions without traversing along the whole field everytime, saving their energy and time. Some help in precision irrigation, which helps their yield even more.
+
+\end{itemize}
+
+
+\subsection{Terminologies}
+\subsubsection{Orthomosaic}
+An Orthomosaic map is a detailed, accurate photo representation of an area, created out of many photos that have been stitched together and geometrically corrected (“orthorectified”) so that it is as accurate as a map.
+
+
+
+
+\subsubsection{Topographical Mapping}
+
+Topographical Mapping is the mapping of the 3-D layout of the ground (terrain,buildings,vehicles,etc) to a 2-D surface using Photogrammetry.
+
+\subsubsection{DEM-Digital Terrain Model (DTM)}
+\begin{itemize}
+\item DTM contains terrain only
+\item  Buildings,roads, vegetation,vehicles,etc are not included
+\end{itemize}
+
+\subsubsection{Digital Elevation Model (DEM))-Digital Surface Model (DSM)}
+\begin{itemize}
+\item DSM contains terrain information as well as buildings,roads, vegetation,vehicles,etc, ie, any objects above surface.
+\item Creation of an Orthomosaic map/ single Orthophoto requires DSM, since better detail means better 3-D point cloud/mesh.
+\item Highly detailed
+\item Each pixel contains (X, Y, Z) where (X, Y) is the 2D information (Z) is the altitude of the highest point for this position.
+\end{itemize}
+
+\subsubsection{Point Clouds}
+Point clouds is the fine-grained collection of points taken from the triangulation of the position of an object (photogrammetry) plotted in 3-D space
+
+\subsubsection{3d textured mesh}
+3D Textured Mesh is a culmination of meshes whose vertices,edges,faces and texture are the refined points from the point cloud
+
+\subsubsection{Contour Lines}
+Contour lines are created from either of the Digital Elevation Models (DSM/DTM) through contour intervals.
+
+\subsubsection{Advantages of Aerial Survey by Photogammetry }
+
+\begin{itemize}
+\item High spatial resolution (influenced by correcting/optimizing camera parameters)
+
+\end{itemize}
+
+\subsection{Data Captured by Drone}
+\begin{itemize}
+\item Orthomosaic Maps
+\item 3D Point Cloud
+\item Digital Elevation Models
+\begin{itemize}
+    \item Digital Surface Model (DSM)
+    \item Digital Terrain Model (DTM)
+\end{itemize}
+\item 3-D Textured Mesh
+\item Contour Lines
+
+\end{itemize}
+
+\subsection{Advantages/Importance of Aerial Survey}
+\begin{itemize}
+\item Reduced time and costs: Topographical mapping using a drone facilitates fewer manpower and is much more quicker than the former. Also with geo-tagging, multiple surveyors need not be present, hence saving resources and time, is faster and reduces cost.
+\item Provide accurate and exhaustive data:A single drone flight produces thousands of measurements, which can be exported in multiple formats (orthomosaic, point cloud, DTM, DSM, contour lines, etc), with each pixel containing important 3D information.
+\item Mapping otherwise inaccessible areas:
+The drone can map dangerous terrain, steep slopes which prove difficult to survey through original means.
+Saves lives, money and time.
+\end{itemize}
+
+
+\subsection{Disadvantages of Aerial Survey}
+\begin{itemize}
+\item Can sometimes cause difficulty in identifying objects due to obscuring. 
+\item Has many distortions like geometric, height.
+\item Mapping restrictions due to wind
+\item Risk of equipment failure
+\item Data management issues of larger areas.
+
+\end{itemize}
+
+\subsection{Available Software/Tools for Aerial Survey & Mapping }
+\subsubsection{DroneDeploy}
+They help create accurate, high-resolution maps , 3D models, live-maps. They are Cost-Effective and compatible with third-party UAV.
+
+
+\subsubsection{Pix4D}
+Pix4D is a Swiss company that offers a suite of photogrammetry applications. It plans UAV flight, creates
+orthomosaics, point clouds and professional 3D models. It gives maximum accuracy and efficiency when a drone is compatible. It also provides NDVI video in real-time while in air.
+
+\subsubsection{Photo Mod}
+It contains all photogrammetric products like DEM, dDSM, 2D and 3Dvectors and orthomosaics
+
+\subsubsection{Agisoft}
+It's is a Russian tech company that started in 2006. Their software does photogrammetry, 3D modeling, panorama stitching, and support for fisheye lenses.It's a cost-effective all-in one software suite
+with a full range of image sensors
+
+
+\subsubsection{Sensefly eMotion}
+It's used for drone flight planning and data management.
+
+
+\subsection{Disadvantage of above Available Software/Tools for Aerial Survey & Mapping }
+
+\subsubsection{DroneDeploy}
+It's surface resolution of structures like buildings is a bit poorer when compared to Agisoft and Pix4D for
+
+
+\subsubsection{Pix4D}
+Unfortunately topographical maps can only be created manually.
+
+
+\subsubsection{Photo Mod}
+It doesn't contain camera self- calibration facility (as opposed to pix4D)
+
+\subsubsection{Agisoft}
+It has less functionality compared to Pix4D and requires a single license per computer.
+
+
+\subsubsection{Sensefly eMotion}
+It has no real time NDVI processing despite having a very advanced software.
+
+\section{References}
+\begin{itemize}
+    \item \url{https://www.dronepilotgroundschool.com/drone-mapping-software/}
+    \item \url{https://www.dronepilotgroundschool.com/drone-mapping-software/}
+    \item \url{https://www.gisresources.com/basic-of-photogrammetry/}
+    \item \url{https://www.researchgate.net/publication/313014684_Survey_on_Computer_Vision_for_UAVs_Current_Developments_and_Trends}
+    \item \url{https://www.researchgate.net/publication/320372713_Unmanned_Aircraft_Systems_in_Logistics_-_Legal_Regulation_and_Worldwide_Examples_Toward_Use_in_Croatia}
+    \item \url{https://www.diva-portal.org/smash/get/diva2:1116742/FULLTEXT01.pdf}
+
+\end{itemize}
+
+
+\end{document}
